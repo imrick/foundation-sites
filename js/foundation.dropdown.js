@@ -228,7 +228,6 @@ class Dropdown extends Positionable {
               return;
             }
             _this.close();
-            $body.off('click.zf.dropdown');
           });
   }
 
@@ -297,6 +296,11 @@ class Dropdown extends Positionable {
 
     if (this.options.trapFocus) {
       Keyboard.releaseFocus(this.$element);
+    }
+    
+    if (this.options.closeOnClick) {
+      var $body = $(document.body).not(this.$element);
+      $body.off('click.zf.dropdown');
     }
   }
 
